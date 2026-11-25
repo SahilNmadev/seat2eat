@@ -1,0 +1,17 @@
+# Private settings
+settings.env
+.env
+.env.*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Dependencies
+node_modules/
+
+# Temporary files
+*.log
+*.tmp
+*.lnk
