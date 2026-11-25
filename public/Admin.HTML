@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Counter Dashboard | Set2eat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body data-role="admin">
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="logo-block">
+        <span class="logo">Set2eat</span>
+        <span class="logo-note">Counter dashboard</span>
+      </div>
+      <p class="live"><span class="live-dot" aria-hidden="true"></span>Listening for new orders</p>
+      <div class="account-bar">
+        <span id="account-name" class="account-name"></span>
+        <button id="logout-btn" type="button" class="btn btn-outline btn-small">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap dash">
+
+    <div class="tabs" role="tablist" aria-label="Dashboard sections">
+      <button class="tab active" role="tab" data-tab="pending">New <span id="count-pending" class="count">0</span></button>
+      <button class="tab" role="tab" data-tab="accepted">Accepted <span id="count-accepted" class="count">0</span></button>
+      <button class="tab" role="tab" data-tab="history">History <span id="count-history" class="count">0</span></button>
+      <button class="tab" role="tab" data-tab="sales">Sales</button>
+      <button class="tab" role="tab" data-tab="menu">Menu and photos <span id="count-menu" class="count">0</span></button>
+    </div>
+
+    <ul id="orders" class="orders"></ul>
+    <p id="orders-empty" class="muted empty"></p>
+
+    <!-- Sales analytics -->
+    <section id="sales-panel" class="panel" hidden>
+      <div class="sales-toolbar">
+        <div class="range-btns" role="group" aria-label="Time range">
+          <button type="button" class="range-btn active" data-range="7">Last 1 week</button>
+          <button type="button" class="range-btn" data-range="30">Last 1 month</button>
+          <button type="button" class="range-btn" data-range="365">Last 1 year</button>
+        </div>
+        <div class="range-btns">
+          <button type="button" id="download-csv" class="btn btn-outline btn-small">Download sales CSV</button>
+          <button type="button" id="download-customers-csv" class="btn btn-outline btn-small">Download customers CSV</button>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><span class="stat-label">Orders sold</span><strong id="stat-orders">0</strong></div>
+        <div class="stat"><span class="stat-label">Revenue</span><strong id="stat-revenue">₹0</strong></div>
+        <div class="stat"><span class="stat-label">Average order</span><strong id="stat-avg">₹0</strong></div>
+        <div class="stat"><span class="stat-label">Items sold</span><strong id="stat-items">0</strong></div>
+      </div>
+
+      <div class="sales-cols">
+        <div>
+          <h2 id="breakdown-title">Daily sales</h2>
+          <div id="sales-breakdown"></div>
+        </div>
+        <div>
+          <h2>Top items</h2>
+          <div id="sales-top"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu manager -->
+    <section id="menu-manager" hidden>
+      <form id="item-form" class="panel item-form">
+        <h2>Add an item</h2>
+        <div class="item-form-layout">
+          <div class="photo-pick">
+            <label class="photo-drop" for="item-photo">
+              <img id="photo-preview" alt="Selected photo" hidden>
+              <span id="photo-hint">Add photo</span>
+            </label>
+            <input id="item-photo" type="file" accept="image/*" hidden>
+            <button type="button" id="photo-clear" class="link-btn" hidden>Remove photo</button>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>Item name</span>
+              <input id="item-name" required maxlength="40" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Price (₹)</span>
+              <input id="item-price" type="number" min="1" step="1" required>
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <input id="item-category" list="category-list" required maxlength="24" placeholder="e.g. Popcorn" autocomplete="off">
+              <datalist id="category-list"></datalist>
+            </label>
+            <label class="field wide">
+              <span>Description (optional)</span>
+              <input id="item-desc" maxlength="70" autocomplete="off">
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add to menu</button>
+        <p id="menu-message" class="muted small" role="status"></p>
+      </form>
+
+      <div id="menu-list"></div>
+    </section>
+
+  </main>
+
+  <!-- New order pop-up -->
+  <dialog id="alert-dialog" class="dialog">
+    <p class="alert-label">New order</p>
+    <h2 id="alert-title"></h2>
+    <p id="alert-seat" class="alert-seat"></p>
+    <p id="alert-customer" class="alert-customer"></p>
+    <ul id="alert-items" class="item-list"></ul>
+    <div class="total-row">
+      <span id="alert-payment"></span>
+      <strong id="alert-total"></strong>
+    </div>
+    <div class="dialog-actions">
+      <button id="alert-later" class="btn btn-ghost">Decide later</button>
+      <button id="alert-reject" class="btn btn-outline">Reject</button>
+      <button id="alert-accept" class="btn btn-primary">Accept</button>
+    </div>
+  </dialog>
+
+  <script src="store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

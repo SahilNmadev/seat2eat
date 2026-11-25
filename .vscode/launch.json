@@ -1,0 +1,35 @@
+{
+    // How to use:  Run and Debug (Ctrl+Shift+D)  ->  pick "Server + customer site"  ->  press the green play button.
+    // The pages open from http://localhost:3000 (never from a file path), which is what makes log in work.
+    // If Chrome says it cannot connect, wait two seconds and press refresh: the server was still starting.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "1. Start the Set2eat server",
+            "program": "${workspaceFolder}/server.js",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "2. Open customer site",
+            "url": "http://localhost:3000/login.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "3. Open counter dashboard",
+            "url": "http://localhost:3000/admin-login.html"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server + customer site",
+            "configurations": ["1. Start the Set2eat server", "2. Open customer site"],
+            "stopAll": true
+        }
+    ]
+}

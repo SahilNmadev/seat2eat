@@ -1,0 +1,107 @@
+/* theme.css: clean white "e-canteen" look. Load AFTER style.css / auth.css / hero.css.
+   It only overrides colours and shapes, so no HTML or JS changes are needed. */
+:root {
+  --cream: #f4f4f6;     /* soft grey: inputs, chips, hover */
+  --paper: #ffffff;     /* cards, panels, header */
+  --green: #e4e4e9;     /* borders and photo placeholders */
+  --ink: #141416;       /* text and primary buttons */
+  --accent: #f26b21;    /* prices, cart badge */
+  --ok: #12a77a;        /* "Available", live dot */
+  --shadow: 0 8px 24px rgba(20, 20, 22, 0.08);
+}
+body { background: #fafafa; }
+
+/* Header + search */
+.topbar { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); box-shadow: none; border-bottom: 1px solid #ececf0; }
+.logo { letter-spacing: -0.04em; }
+.search input {
+  padding: 15px 18px 15px 48px;
+  background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%239a9aa3' stroke-width='2' stroke-linecap='round'><circle cx='8' cy='8' r='6'/><path d='m13 13 4 4'/></svg>") no-repeat 17px center;
+  border: 1px solid #ececf0; border-radius: 16px; box-shadow: 0 4px 14px rgba(20, 20, 22, 0.05);
+}
+.search input:focus { border-color: var(--ink); }
+.cart-btn { border-radius: 14px; padding: 12px 20px; }
+.cart-count { background: var(--accent); color: #fff; }
+.live-dot { background: var(--ok); box-shadow: 0 0 0 4px rgba(18, 167, 122, 0.25); }
+
+/* Category cards (icon + name + hint) */
+.cat-wrap { padding-top: 26px; }
+.cat-row { gap: 14px; border-bottom: 0; padding-bottom: 18px; }
+.cat { flex-direction: row; gap: 12px; min-width: 230px; padding: 14px 20px; background: #fff; border-radius: 18px; box-shadow: var(--shadow); transition: transform 0.15s; }
+.cat:hover { transform: translateY(-2px); }
+.cat-img { width: 46px; height: 46px; border-radius: 12px; box-shadow: none; font-size: 1.3rem; background: var(--cream); }
+.cat-name { font-weight: 700; text-align: left; }
+.cat:hover .cat-name { text-decoration: none; }
+.cat-name::after { content: "Browse items"; display: block; font-size: 0.72rem; font-weight: 500; opacity: 0.55; }
+
+/* Menu cards: big photo, status pill, black add button */
+.menu-section h2 { font-size: 1.5rem; letter-spacing: -0.02em; }
+.grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 28px 22px; }
+.card { background: #fff; border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+.card-photo { border-radius: 0; aspect-ratio: 4 / 3; }
+.card-media::after {
+  content: "Available"; position: absolute; top: 12px; right: 12px;
+  padding: 3px 12px; border-radius: 999px; background: var(--ok); color: #fff; font-size: 0.74rem; font-weight: 700;
+}
+.card.is-out .card-media::after { content: "Sold out"; background: #8b8b93; }
+.card-action { left: auto; right: 14px; transform: none; bottom: -20px; min-width: 96px; background: var(--ink); border: 0; border-radius: 12px; }
+.add-btn, .stepper button, .stepper span { color: #fff; }
+.add-btn:hover, .stepper button:hover { background: #2c2c31; }
+.card.is-out .card-action { background: #ececf0; }
+.card.is-out .sold-out-label { color: #666; }
+.card-body { padding: 26px 18px 18px; }
+.card-body h3 { font-size: 1.1rem; }
+.card-price { color: var(--accent); font-size: 1.05rem; }
+
+/* Panels, buttons, forms, dialogs */
+.panel, .order-card { border-radius: 20px; box-shadow: var(--shadow); }
+.btn { border-radius: 12px; }
+.btn-outline { border-color: #d6d6dc; }
+.btn-outline:hover { background: var(--cream); }
+.field input { border: 1px solid #d6d6dc; border-radius: 12px; }
+.field input:focus { border-color: var(--ink); outline: none; }
+.radio { border: 1px solid #d6d6dc; border-radius: 12px; }
+.radio:has(input:checked) { border-color: var(--ink); background: var(--cream); }
+.dialog { border-radius: 24px; }
+.tab, .range-btn { border-color: #d6d6dc; }
+.status { border-color: #d6d6dc; background: var(--cream); }
+.hero { border-radius: 0 0 24px 24px; }
+.menu-thumb { background: var(--cream); }
+
+/* ===== Compact cards (smaller size). Change --card-w to make them bigger or smaller ===== */
+:root { --card-w: 180px; }
+.grid { grid-template-columns: repeat(auto-fill, var(--card-w)); gap: 26px 16px; justify-content: start; }
+.card { border-radius: 16px; }
+.card-media::after { top: 8px; right: 8px; padding: 2px 9px; font-size: 0.66rem; }
+.card-action { right: 8px; bottom: -16px; min-width: 70px; border-radius: 10px; }
+.add-btn { padding: 6px 14px; font-size: 0.85rem; }
+.stepper { gap: 8px; padding: 1px 4px; }
+.stepper button { width: 26px; height: 26px; font-size: 1rem; }
+.sold-out-label { padding: 6px 10px; font-size: 0.75rem; }
+.card-body { padding: 20px 12px 12px; }
+.card-body h3 { font-size: 0.95rem; }
+.card-price { font-size: 0.92rem; }
+.card-desc { font-size: 0.78rem; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.menu-section h2 { font-size: 1.3rem; margin-bottom: 14px; }
+@media (max-width: 480px) { :root { --card-w: calc(50% - 8px); } .grid { gap: 22px 12px; } }
+
+/* ===== 4 items per row (overrides the fixed card width above) ===== */
+.wrap { max-width: 1280px; }                      /* a little wider so 4 cards fit next to the cart */
+.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 16px; }
+@media (max-width: 760px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; } }
+
+/* ===== Text on the hero banner ===== */
+.hero.has-tagline::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 55%); }
+.hero-tagline { position: absolute; left: 5%; bottom: 14%; z-index: 2; color: #fff; font-weight: 800; letter-spacing: -0.03em; font-size: clamp(1.3rem, 4vw, 3rem); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); pointer-events: none; }
+.hero-arrow, .hero-dots { z-index: 3; }
+
+/* ===== Banner size: 1200 x 250 ===== */
+.hero { max-width: 1200px; aspect-ratio: 1200 / 250; margin: 16px auto 0; border-radius: 20px; }
+.hero-tagline { left: 4%; bottom: 12%; font-size: clamp(1rem, 2.8vw, 2rem); }
+.hero-arrow { width: 38px; height: 38px; font-size: 1.4rem; }
+.hero-preview { aspect-ratio: 1200 / 250; }
+@media (max-width: 600px) {
+  .hero { aspect-ratio: 3 / 1; margin: 10px 12px 0; border-radius: 14px; width: auto; }
+  .hero-arrow { width: 28px; height: 28px; font-size: 1.1rem; }
+}

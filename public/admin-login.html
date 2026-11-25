@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Counter login | Set2eat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body data-role="admin">
+
+  <main class="auth-wrap">
+    <div class="panel auth-card">
+      <h1>Set2eat <span class="auth-badge">Counter</span></h1>
+      <p class="muted auth-sub">For cinema staff. Log in to manage orders, the menu and sales.</p>
+
+      <div class="tabs" role="tablist" aria-label="Account">
+        <button type="button" id="tab-login" class="tab active" role="tab" aria-selected="true">Log in</button>
+        <button type="button" id="tab-signup" class="tab" role="tab" aria-selected="false">Sign up</button>
+      </div>
+
+      <form id="login-form" class="auth-form" data-kind="login">
+        <label class="field">
+          <span>Username</span>
+          <input name="username" required maxlength="30" autocomplete="username">
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" required autocomplete="current-password">
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+
+      <form id="signup-form" class="auth-form" data-kind="signup" hidden>
+        <label class="field">
+          <span>Full name</span>
+          <input name="name" required minlength="2" maxlength="60" autocomplete="name">
+        </label>
+        <label class="field">
+          <span>Username</span>
+          <input name="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_.]{3,30}" autocomplete="username">
+          <small class="muted">Letters, numbers, dots and underscores.</small>
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" required minlength="8" autocomplete="new-password">
+          <small class="muted">At least 8 characters.</small>
+        </label>
+        <label class="field">
+          <span>Confirm password</span>
+          <input name="confirm" type="password" required minlength="8" autocomplete="new-password">
+        </label>
+        <label class="field">
+          <span>Staff code</span>
+          <input name="adminCode" type="password" required autocomplete="off">
+          <small class="muted">Ask the owner for this code. Without it, counter accounts cannot be created.</small>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Create counter account</button>
+      </form>
+
+      <p id="auth-error" class="auth-error" role="alert"></p>
+      <p class="muted small auth-foot">Ordering snacks? <a href="login.html">Go to the customer login</a>.</p>
+    </div>
+  </main>
+
+  <script src="store.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

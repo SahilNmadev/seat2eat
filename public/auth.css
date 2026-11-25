@@ -1,0 +1,49 @@
+/* Login / sign-up pages and the account bar. Uses the colours from style.css. */
+
+.auth-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.auth-card { width: min(440px, 100%); padding: 28px; }
+.auth-card h1 {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.auth-badge {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  padding: 3px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  letter-spacing: 0;
+}
+.auth-sub { margin: 8px 0 20px; }
+.auth-form { display: grid; gap: 14px; }
+.auth-form .field small { font-weight: 400; }
+.auth-error {
+  min-height: 1.5em;
+  margin-top: 14px;
+  font-weight: 600;
+  color: #8a1f11;
+}
+.auth-foot { margin-top: 12px; }
+.auth-foot a { color: var(--ink); font-weight: 600; }
+
+/* Name + Log out, shown in the page header */
+.account-bar { display: flex; align-items: center; gap: 10px; }
+.account-name { font-weight: 700; }
+
+.site-header .wrap { position: relative; }
+.site-header .account-bar { position: absolute; top: 0; right: 24px; }
+@media (max-width: 600px) {
+  .site-header .account-bar { position: static; margin-bottom: 12px; padding: 0; }
+}
+
+/* Customer name on dashboard order cards and the new-order pop-up */
+.order-customer, .alert-customer { font-weight: 600; margin-top: 2px; }

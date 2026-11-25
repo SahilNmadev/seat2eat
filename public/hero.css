@@ -1,0 +1,28 @@
+/* Hero slider (1920 x 800 images) */
+.hero { position: relative; width: 100%; max-width: 1920px; margin: 0 auto; aspect-ratio: 1920 / 800; overflow: hidden; background: var(--green); }
+.hero[hidden] { display: none; }
+.hero-track { display: flex; height: 100%; transition: transform 0.6s ease; }
+.hero-slide { flex: 0 0 100%; height: 100%; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: rgba(241, 243, 225, 0.85); color: var(--ink);
+  font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.hero-arrow:hover { background: var(--paper); }
+.hero-prev { left: 14px; }
+.hero-next { right: 14px; }
+.hero-dots { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center; gap: 8px; }
+.hero-dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; background: rgba(241, 243, 225, 0.6); cursor: pointer; }
+.hero-dot.active { background: var(--paper); box-shadow: 0 0 0 2px var(--ink); }
+@media (max-width: 600px) { .hero-arrow { width: 32px; height: 32px; font-size: 1.2rem; } }
+
+/* Admin: hero banners + menu photos */
+.hero-slot { display: grid; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--green); }
+.hero-slot h3 { font-size: 1rem; }
+.hero-preview { width: 100%; max-width: 480px; aspect-ratio: 1920 / 800; background: var(--cream); border: 1px dashed var(--green); border-radius: 10px; overflow: hidden; display: grid; place-items: center; }
+.hero-preview img { width: 100%; height: 100%; object-fit: cover; }
+.hero-slot-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.menu-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: var(--green); flex: none; }
+.menu-admin-row { align-items: center; }

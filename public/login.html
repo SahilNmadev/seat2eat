@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in | Set2eat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body data-role="customer">
+
+  <main class="auth-wrap">
+    <div class="panel auth-card">
+      <h1>Set2eat</h1>
+      <p class="muted auth-sub">Snacks brought to your seat. Log in or create an account to order.</p>
+
+      <div class="tabs" role="tablist" aria-label="Account">
+        <button type="button" id="tab-login" class="tab active" role="tab" aria-selected="true">Log in</button>
+        <button type="button" id="tab-signup" class="tab" role="tab" aria-selected="false">Sign up</button>
+      </div>
+
+      <form id="login-form" class="auth-form" data-kind="login">
+        <label class="field">
+          <span>Email</span>
+          <input name="email" type="email" required maxlength="120" autocomplete="email">
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" required autocomplete="current-password">
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+
+      <form id="signup-form" class="auth-form" data-kind="signup" hidden>
+        <label class="field">
+          <span>Full name</span>
+          <input name="name" required minlength="2" maxlength="60" autocomplete="name">
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input name="email" type="email" required maxlength="120" autocomplete="email">
+        </label>
+        <label class="field">
+          <span>Phone (optional)</span>
+          <input name="phone" type="tel" maxlength="15" autocomplete="tel">
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" required minlength="8" autocomplete="new-password">
+          <small class="muted">At least 8 characters.</small>
+        </label>
+        <label class="field">
+          <span>Confirm password</span>
+          <input name="confirm" type="password" required minlength="8" autocomplete="new-password">
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Create account</button>
+      </form>
+
+      <p id="auth-error" class="auth-error" role="alert"></p>
+      <p class="muted small auth-foot">Counter staff? <a href="admin-login.html">Go to the counter login</a>.</p>
+    </div>
+  </main>
+
+  <script src="store.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
